@@ -236,19 +236,17 @@
     </div>
 
     <script>
-        let prvky = document.getElementsByClassName("vypujcka-item") 
+        let prvky = document.getElementsByClassName("vypujcka-item")
 
-        prvky[0].getElementsByTagName("input")[0].onclick = (e) => { checkFunc(0) }
-        prvky[1].getElementsByTagName("input")[0].onclick = (e) => { checkFunc(1) }
-        prvky[2].getElementsByTagName("input")[0].onclick = (e) => { checkFunc(2) }
+        for (let i of prvky) {
+            let prvek = i.getElementsByTagName("input")[0]
+            let detail = i.getElementsByClassName("detail-vypujcky-container")[0]
+            prvek.onclick = (e) => { checkFunc(prvek, detail) }
+        }
 
-        function checkFunc(box) {
-            prvek = prvky[box].getElementsByTagName("input")[0]
-            detaily = prvky[box].getElementsByClassName("detail-vypujcky-container")[0]
-
-            prvek.classList.toggle("checked");
-            
-            if (prvek.classList.contains("checked")) {
+        function checkFunc(box, detaily) {
+            box.classList.toggle("checked");
+            if (box.classList.contains("checked")) {
                 detaily.style.height = detaily.scrollHeight + "px";
             }
             else {
